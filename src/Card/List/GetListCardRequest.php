@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace FriendsOfVertexCards\ApiClient\Card\List;
 
+use FriendsOfVertexCards\ApiClient\Enum\CardSortBy;
 use FriendsOfVertexCards\ApiClient\Enum\CardStatus;
+use FriendsOfVertexCards\ApiClient\Enum\SortType;
 use FriendsOfVertexCards\ApiClient\RequestInterface;
 use Ramsey\Uuid\UuidInterface;
 
@@ -13,6 +15,8 @@ use Ramsey\Uuid\UuidInterface;
  */
 final class GetListCardRequest implements RequestInterface
 {
+    private const string DATE_FORMAT = 'Y-m-d H:i:s';
+
     /**
      * @param CardStatus[] $statuses
      */
@@ -22,6 +26,10 @@ final class GetListCardRequest implements RequestInterface
         public int $page,
         public int $quantity,
         private readonly array $statuses = [],
+        private readonly ?\DateTimeImmutable $createdFrom = null,
+        private readonly ?\DateTimeImmutable $createdTo = null,
+        private readonly ?CardSortBy $sortBy = null,
+        private readonly SortType $sortType = SortType::Desc,
     ) {}
 
     public function getPath(): string
@@ -36,11 +44,17 @@ final class GetListCardRequest implements RequestInterface
 
     public function getQueryParams(): array
     {
-        return [
-            'page' => $this->page,
-            'quantity' => $this->quantity,
-            'statuses' => array_column($this->statuses, 'value'),
-        ];
+        return array_filter(
+            [
+                'page' => $this->page,
+                'quantity' => $this->quantity,
+                'statuses' => array_column($this->statuses, 'value'),
+                'createdFrom' => $this->createdFrom?->format(self::DATE_FORMAT),
+                'createdTo' => $this->createdTo?->format(self::DATE_FORMAT),
+                'sortBy' => $this->sortBy?->value,
+                'sortType' => $this->sortType->value,
+            ],
+        );
     }
 
     public function getBody(): ?string
