@@ -28,7 +28,7 @@ final class GetListCardRequest implements RequestInterface
         private readonly array $statuses = [],
         private readonly ?\DateTimeImmutable $createdFrom = null,
         private readonly ?\DateTimeImmutable $createdTo = null,
-        private readonly CardSortBy $sortBy = CardSortBy::CreatedAt,
+        private readonly ?CardSortBy $sortBy = CardSortBy::CreatedAt,
         private readonly SortType $sortType = SortType::Desc,
     ) {}
 
@@ -51,7 +51,7 @@ final class GetListCardRequest implements RequestInterface
                 'statuses' => array_column($this->statuses, 'value'),
                 'createdAtFrom' => $this->createdFrom?->format(self::DATETIME_FORMAT),
                 'createdAtTo' => $this->createdTo?->format(self::DATETIME_FORMAT),
-                'sortBy' => $this->sortBy->value,
+                'sortBy' => $this->sortBy?->value,
                 'sortType' => $this->sortType->value,
             ],
         );
