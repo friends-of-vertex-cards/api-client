@@ -28,7 +28,7 @@ final class GetListCardRequest implements RequestInterface
         private readonly array $statuses = [],
         private readonly ?\DateTimeImmutable $createdFrom = null,
         private readonly ?\DateTimeImmutable $createdTo = null,
-        private readonly ?CardSortBy $sortBy = null,
+        private readonly CardSortBy $sortBy = CardSortBy::CreatedAt,
         private readonly SortType $sortType = SortType::Desc,
     ) {}
 
