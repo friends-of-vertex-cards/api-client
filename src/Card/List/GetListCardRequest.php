@@ -15,7 +15,7 @@ use Ramsey\Uuid\UuidInterface;
  */
 final class GetListCardRequest implements RequestInterface
 {
-    private const string DATE_FORMAT = 'Y-m-d H:i:s';
+    private const string DATETIME_FORMAT = 'Y-m-d\TH:i:s.v\Z';
 
     /**
      * @param CardStatus[] $statuses
@@ -28,7 +28,7 @@ final class GetListCardRequest implements RequestInterface
         private readonly array $statuses = [],
         private readonly ?\DateTimeImmutable $createdFrom = null,
         private readonly ?\DateTimeImmutable $createdTo = null,
-        private readonly ?CardSortBy $sortBy = null,
+        private readonly ?CardSortBy $sortBy = CardSortBy::CreatedAt,
         private readonly SortType $sortType = SortType::Desc,
     ) {}
 
@@ -49,8 +49,8 @@ final class GetListCardRequest implements RequestInterface
                 'page' => $this->page,
                 'quantity' => $this->quantity,
                 'statuses' => array_column($this->statuses, 'value'),
-                'createdFrom' => $this->createdFrom?->format(self::DATE_FORMAT),
-                'createdTo' => $this->createdTo?->format(self::DATE_FORMAT),
+                'createdAtFrom' => $this->createdFrom?->format(self::DATETIME_FORMAT),
+                'createdAtTo' => $this->createdTo?->format(self::DATETIME_FORMAT),
                 'sortBy' => $this->sortBy?->value,
                 'sortType' => $this->sortType->value,
             ],
