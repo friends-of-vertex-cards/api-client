@@ -51,7 +51,7 @@ final class GetListCardRequest implements RequestInterface
                 'statuses' => array_column($this->statuses, 'value'),
                 'createdAtFrom' => $this->createdFrom?->format(self::DATETIME_FORMAT),
                 'createdAtTo' => $this->createdTo?->format(self::DATETIME_FORMAT),
-                'sortBy' => $this->sortBy?->value,
+                'sortBy' => $this->sortBy->value,
                 'sortType' => $this->sortType->value,
             ],
         );
