@@ -41,6 +41,7 @@ final readonly class VertexCardsClientFactory implements VertexCardsClientFactor
                     new AddPathPlugin(new Uri($this->apiPath)),
                     new HeaderDefaultsPlugin([
                         self::HEADER_API_ACCESS_TOKEN => $configureDto->token,
+                        'Content-Type' => 'application/json',
                     ]),
                     new LoggerPlugin($this->logger, new CurlCommandFormatter()),
                 ],
