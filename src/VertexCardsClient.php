@@ -24,6 +24,10 @@ use FriendsOfVertexCards\ApiClient\Card\GetRestrictions\CardRestrictionsRequest;
 use FriendsOfVertexCards\ApiClient\Card\GetRestrictions\CardRestrictionsResponse;
 use FriendsOfVertexCards\ApiClient\Card\List\GetListCardRequest;
 use FriendsOfVertexCards\ApiClient\Card\List\GetListCardResponse;
+use FriendsOfVertexCards\ApiClient\Card\TopUpBalance\TopUpCardRequest;
+use FriendsOfVertexCards\ApiClient\Card\TopUpBalance\TopUpCardResponse;
+use FriendsOfVertexCards\ApiClient\Card\WithdrawBalance\WithdrawCardRequest;
+use FriendsOfVertexCards\ApiClient\Card\WithdrawBalance\WithdrawCardResponse;
 use FriendsOfVertexCards\ApiClient\CardOwner\List\GetListCardOwnerRequest;
 use FriendsOfVertexCards\ApiClient\CardOwner\List\GetListCardOwnerResponse;
 use FriendsOfVertexCards\ApiClient\CardTransaction\Details\GetCardTransactionDetailsRequest;
@@ -124,6 +128,16 @@ final readonly class VertexCardsClient implements VertexCardsClientInterface
     }
 
     public function createCard(CardCreateRequest $request): CardCreateResponse
+    {
+        return $this->sendRequest($request);
+    }
+
+    public function topUpCardBalance(TopUpCardRequest $request): TopUpCardResponse
+    {
+        return $this->sendRequest($request);
+    }
+
+    public function withdrawCardBalance(WithdrawCardRequest $request): WithdrawCardResponse
     {
         return $this->sendRequest($request);
     }
