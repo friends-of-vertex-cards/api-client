@@ -177,6 +177,11 @@ final readonly class VertexCardsClient implements VertexCardsClientInterface
         $this->sendRequest($request);
     }
 
+    public function updateCardOwner(CardOwner\Update\UpdateCardOwnerRequest $request): void
+    {
+        $this->sendRequest($request);
+    }
+
     public function updateCard(Card\Update\CardUpdateRequest $request): void
     {
         $this->sendRequest($request);

@@ -82,6 +82,8 @@ interface VertexCardsClientInterface
 
     public function createCardOwner(CardOwner\Create\CreateCardOwnerRequest $request): void;
 
+    public function updateCardOwner(CardOwner\Update\UpdateCardOwnerRequest $request): void;
+
     public function getTopUps(GetListTopUpRequest $request): GetListTopUpResponse;
 
     public function getTopUpDetails(TopUpDetailsRequest $request): TopUpDetailsResponse;
