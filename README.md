@@ -63,3 +63,5 @@ $accounts = $client->getAccounts(new \FriendsOfVertexCards\ApiClient\Account\Lis
 - [Init top up](examples/topup-account.php)
 - [Create card](examples/create-card.php)
 - [Get card credentials](examples/get-card-credentials.php)
+- [Top up card balance](examples/top-up-card.php)
+- [Withdraw card balance](examples/withdraw-card-balance.php)
