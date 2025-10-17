@@ -11,6 +11,10 @@ use FriendsOfVertexCards\ApiClient\Account\GetAccountById\GetAccountByIdResponse
 use FriendsOfVertexCards\ApiClient\Account\List\GetListAccountRequest;
 use FriendsOfVertexCards\ApiClient\Account\List\GetListAccountResponse;
 use FriendsOfVertexCards\ApiClient\Account\Update\UpdateAccountRequest;
+use FriendsOfVertexCards\ApiClient\AccountTransaction\Details\GetAccountTransactionDetailsRequest;
+use FriendsOfVertexCards\ApiClient\AccountTransaction\Details\GetAccountTransactionDetailsResponse;
+use FriendsOfVertexCards\ApiClient\AccountTransaction\List\GetListAccountTransactionRequest;
+use FriendsOfVertexCards\ApiClient\AccountTransaction\List\GetListAccountTransactionResponse;
 use FriendsOfVertexCards\ApiClient\Card\Activate\ActivateCardRequest;
 use FriendsOfVertexCards\ApiClient\Card\Close\CloseCardRequest;
 use FriendsOfVertexCards\ApiClient\Card\Create\CardCreateRequest;
@@ -152,6 +156,16 @@ final readonly class VertexCardsClient implements VertexCardsClientInterface
         return $this->sendRequest($request);
     }
 
+    public function getAccountTransactions(GetListAccountTransactionRequest $request): GetListAccountTransactionResponse
+    {
+        return $this->sendRequest($request);
+    }
+
+    public function getAccountTransaction(GetAccountTransactionDetailsRequest $request): GetAccountTransactionDetailsResponse
+    {
+        return $this->sendRequest($request);
+    }
+
     public function getCardCredentials(CardCredentialsRequest $request): CardCredentialsResponse
     {
         return $this->sendRequest($request);
@@ -198,7 +212,7 @@ final readonly class VertexCardsClient implements VertexCardsClientInterface
         try {
             $response = $this->client->sendRequest($preparedRequest);
             $body = (string) $response->getBody();
-            $this->logger->info('Response received: ' . $body);
+            $this->logger->info(\sprintf('Response received: %s. Http code: %s', $body, $response->getStatusCode()));
 
             $responseClass = $request->getResponseClass();
             if ($responseClass === null) {
@@ -208,7 +222,13 @@ final readonly class VertexCardsClient implements VertexCardsClientInterface
             return $this->serializer->deserialize($body, $responseClass, 'json');
         } catch (\Exception $exception) {
             if ($exception instanceof ClientErrorException) {
-                $this->logger->info('Response received: ' . (string) $exception->getResponse()->getBody());
+                $this->logger->info(
+                    \sprintf(
+                        'Response received: %s. Http code: %s',
+                        $exception->getResponse()->getBody(),
+                        $exception->getResponse()->getStatusCode(),
+                    ),
+                );
             }
 
             throw $exception;

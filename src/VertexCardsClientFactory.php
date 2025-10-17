@@ -7,6 +7,7 @@ namespace FriendsOfVertexCards\ApiClient;
 use FriendsOfVertexCards\ApiClient\Dto\ConfigureDto;
 use Http\Client\Common\Plugin\AddHostPlugin;
 use Http\Client\Common\Plugin\AddPathPlugin;
+use Http\Client\Common\Plugin\ErrorPlugin;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 use Http\Client\Common\Plugin\LoggerPlugin;
 use Http\Client\Common\PluginClient;
@@ -44,6 +45,7 @@ final readonly class VertexCardsClientFactory implements VertexCardsClientFactor
                         'Content-Type' => 'application/json',
                     ]),
                     new LoggerPlugin($this->logger, new CurlCommandFormatter()),
+                    new ErrorPlugin(),
                 ],
             ),
             $this->serializer,

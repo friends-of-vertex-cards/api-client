@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace FriendsOfVertexCards\ApiClient\CardTransaction\Details;
+namespace FriendsOfVertexCards\ApiClient\AccountTransaction\Details;
 
+use FriendsOfVertexCards\ApiClient\CardTransaction\Details\AccountInfo;
 use FriendsOfVertexCards\ApiClient\Enum\TransactionStatus;
 
 /**
  * @psalm-api
  */
-final class CardTransactionData
+final class AccountTransactionData
 {
     public function __construct(
         public string $id,
@@ -24,6 +25,6 @@ final class CardTransactionData
         public TransactionStatus $status,
         public string $createdAt,
         public string $updatedAt,
-        public CardTransactionDetails $transactionDetails,
+        public AccountTransactionDetails $transactionDetails,
     ) {}
 }

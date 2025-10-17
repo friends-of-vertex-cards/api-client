@@ -11,6 +11,10 @@ use FriendsOfVertexCards\ApiClient\Account\GetAccountById\GetAccountByIdResponse
 use FriendsOfVertexCards\ApiClient\Account\List\GetListAccountRequest;
 use FriendsOfVertexCards\ApiClient\Account\List\GetListAccountResponse;
 use FriendsOfVertexCards\ApiClient\Account\Update\UpdateAccountRequest;
+use FriendsOfVertexCards\ApiClient\AccountTransaction\Details\GetAccountTransactionDetailsRequest;
+use FriendsOfVertexCards\ApiClient\AccountTransaction\Details\GetAccountTransactionDetailsResponse;
+use FriendsOfVertexCards\ApiClient\AccountTransaction\List\GetListAccountTransactionRequest;
+use FriendsOfVertexCards\ApiClient\AccountTransaction\List\GetListAccountTransactionResponse;
 use FriendsOfVertexCards\ApiClient\Card\Activate\ActivateCardRequest;
 use FriendsOfVertexCards\ApiClient\Card\Close\CloseCardRequest;
 use FriendsOfVertexCards\ApiClient\Card\Create\CardCreateRequest;
@@ -93,4 +97,8 @@ interface VertexCardsClientInterface
     public function getCardTransactions(GetListCardTransactionRequest $request): GetListCardTransactionResponse;
 
     public function getCardTransaction(GetCardTransactionDetailsRequest $request): GetCardTransactionDetailsResponse;
+
+    public function getAccountTransactions(GetListAccountTransactionRequest $request): GetListAccountTransactionResponse;
+
+    public function getAccountTransaction(GetAccountTransactionDetailsRequest $request): GetAccountTransactionDetailsResponse;
 }

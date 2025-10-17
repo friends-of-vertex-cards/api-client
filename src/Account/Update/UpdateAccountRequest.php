@@ -15,6 +15,7 @@ use Ramsey\Uuid\UuidInterface;
         public UuidInterface $companyId,
         public UuidInterface $accountId,
         public string $name,
+        public ?AccountFeeRequest $fees = null,
     ) {}
 
     public function getPath(): string
@@ -35,9 +36,14 @@ use Ramsey\Uuid\UuidInterface;
     public function getBody(): ?string
     {
         /** @var string $body */
-        $body = json_encode([
-            'name' => $this->name,
-        ]);
+        $body = json_encode(
+            array_filter(
+                [
+                    'name' => $this->name,
+                    'fees' => $this->fees?->toRequestArray(),
+                ],
+            ),
+        );
 
         return $body;
     }

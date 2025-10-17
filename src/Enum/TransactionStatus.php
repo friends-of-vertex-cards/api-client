@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace FriendsOfVertexCards\ApiClient\Enum;
 
-enum CardTransactionStatus: string
+enum TransactionStatus: string
 {
     case Authorized = 'authorized';
     case Canceled = 'canceled';
