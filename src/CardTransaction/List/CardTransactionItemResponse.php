@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace FriendsOfVertexCards\ApiClient\CardTransaction\List;
 
-use FriendsOfVertexCards\ApiClient\Enum\CardTransactionStatus;
 use FriendsOfVertexCards\ApiClient\Enum\CardTransactionType;
+use FriendsOfVertexCards\ApiClient\Enum\TransactionStatus;
 
 /**
  * @psalm-api
@@ -22,7 +22,7 @@ final class CardTransactionItemResponse
         public ?string $feeCurrency,
         public string $settlementAmount,
         public string $settlementCurrency,
-        public CardTransactionStatus $status,
+        public TransactionStatus $status,
         public CardTransactionType $type,
         public string $authorizedBy,
         public ?string $merchantName,
