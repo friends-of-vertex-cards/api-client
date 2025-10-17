@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace FriendsOfVertexCards\ApiClient;
 
+use FriendsOfVertexCards\ApiClient\Account\Create\AccountCreateRequest;
+use FriendsOfVertexCards\ApiClient\Account\Create\AccountCreateResponse;
 use FriendsOfVertexCards\ApiClient\Account\Disable\DisableAccountByIdRequest;
 use FriendsOfVertexCards\ApiClient\Account\Enable\EnableAccountByIdRequest;
 use FriendsOfVertexCards\ApiClient\Account\GetAccountById\GetAccountByIdRequest;
@@ -11,6 +13,8 @@ use FriendsOfVertexCards\ApiClient\Account\GetAccountById\GetAccountByIdResponse
 use FriendsOfVertexCards\ApiClient\Account\List\GetListAccountRequest;
 use FriendsOfVertexCards\ApiClient\Account\List\GetListAccountResponse;
 use FriendsOfVertexCards\ApiClient\Account\Update\UpdateAccountRequest;
+use FriendsOfVertexCards\ApiClient\AccountProvider\List\GetListAvailableProviderAccountRequest;
+use FriendsOfVertexCards\ApiClient\AccountProvider\List\GetListAvailableProviderAccountResponse;
 use FriendsOfVertexCards\ApiClient\AccountTransaction\Details\GetAccountTransactionDetailsRequest;
 use FriendsOfVertexCards\ApiClient\AccountTransaction\Details\GetAccountTransactionDetailsResponse;
 use FriendsOfVertexCards\ApiClient\AccountTransaction\List\GetListAccountTransactionRequest;
@@ -51,6 +55,10 @@ use FriendsOfVertexCards\ApiClient\TopUp\List\GetListTopUpResponse;
 interface VertexCardsClientInterface
 {
     public function getAccount(GetAccountByIdRequest $request): GetAccountByIdResponse;
+
+    public function createAccount(AccountCreateRequest $request): AccountCreateResponse;
+
+    public function getListAvailableProviderAccount(GetListAvailableProviderAccountRequest $request): GetListAvailableProviderAccountResponse;
 
     public function updateAccount(UpdateAccountRequest $request): void;
 
