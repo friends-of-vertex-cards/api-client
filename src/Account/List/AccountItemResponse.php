@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace FriendsOfVertexCards\ApiClient\Account\List;
 
 use FriendsOfVertexCards\ApiClient\Enum\AccountStatus;
+use FriendsOfVertexCards\ApiClient\Enum\CardType;
 
 /**
  * @psalm-api
  */
 final class AccountItemResponse
 {
+    /**
+     * @param CardType[] $allowedCardTypes
+     */
     public function __construct(
         public string $id,
         public string $name,
