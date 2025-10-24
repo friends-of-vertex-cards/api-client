@@ -31,6 +31,7 @@ final class CardTransactionItemResponse
         public ?string $authorizationCode,
         public ?string $declineReason,
         public ?string $mcc,
+        public ?string $parentId,
         public string $transactionAt,
         public string $createdAt,
     ) {}

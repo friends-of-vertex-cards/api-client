@@ -21,6 +21,7 @@ final class CardTransactionData
         public string $settlementAmount,
         public string $settlementCurrency,
         public ?string $description,
+        public ?string $parentId,
         public TransactionStatus $status,
         public string $createdAt,
         public string $updatedAt,
