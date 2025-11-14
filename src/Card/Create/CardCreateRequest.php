@@ -17,10 +17,11 @@ final readonly class CardCreateRequest implements RequestInterface
         private string $name,
         private UuidInterface $companyId,
         private UuidInterface $accountId,
-        private UuidInterface $cardProviderBinId,
+        private ?UuidInterface $cardProviderBinId,
         private string $cardOwnerId,
         private CardType $cardType,
         private ?CardLimitRequest $limits = null,
+        private ?UuidInterface $binCategoryId = null,
     ) {}
 
     public function getPath(): string
@@ -42,7 +43,8 @@ final readonly class CardCreateRequest implements RequestInterface
     {
         $data = [
             'name' => $this->name,
-            'cardProviderBinId' => $this->cardProviderBinId->toString(),
+            'cardProviderBinId' => $this->cardProviderBinId?->toString(),
+            'binCategoryId' => $this->binCategoryId?->toString(),
             'cardOwnerId' => $this->cardOwnerId,
             'cardType' => $this->cardType->value,
             'limits' => new \stdClass(),

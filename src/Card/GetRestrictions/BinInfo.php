@@ -14,6 +14,8 @@ final class BinInfo
 {
     /**
      * @param CardTokenization[] $cardTokenizations
+     * @param string[]           $categoryIds
+     * @param string[]           $tags
      */
     public function __construct(
         public string $bin,
@@ -21,5 +23,7 @@ final class BinInfo
         public string $issuerCountry,
         public array $cardTokenizations,
         public string $cardProviderBinId,
+        public array $categoryIds,
+        public array $tags,
     ) {}
 }
