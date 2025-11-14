@@ -20,8 +20,8 @@ final readonly class CardCreateRequest implements RequestInterface
         private ?UuidInterface $cardProviderBinId,
         private string $cardOwnerId,
         private CardType $cardType,
-        private ?CardLimitRequest $limits,
-        private ?UuidInterface $binCategoryId,
+        private ?CardLimitRequest $limits = null,
+        private ?UuidInterface $binCategoryId = null,
     ) {}
 
     public function getPath(): string
